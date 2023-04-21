@@ -32,7 +32,17 @@ function addBookToLibrary(book) {
 addBookToLibrary(thinkAndGrowRich);
 addBookToLibrary(meditations);
 
+const cardContainer = document.querySelector(".card-container"); // creating variable for card container to append child elements to
+
 function displayBooks() {
-  for (const displayBook in library) {
-  }
-} // utilize this function to loop through library array and display the values as cards in html elements
+  library.forEach((book) => {
+    const card = document.createElement("div"); // creates a div element that will represent the cards that book information will be displayed on
+    cardContainer.appendChild(card); // this appends the card to the card-container div so that the cards will be displayed
+    const title = document.createElement("p"); // this creates a p element for which the title will be displayed
+    title.innerHTML = book.title; // this sets the paragraph content to the current object's title property value
+    card.appendChild(title); // this appends that value to the caed
+  });
+  // utilize this function to loop through library array and display the values as cards in html elements
+}
+
+displayBooks();
