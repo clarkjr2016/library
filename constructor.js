@@ -41,18 +41,19 @@ function displayBooks() {
     cardContainer.appendChild(card); // this appends the card to the card-container div so that the cards will be displayed
     const title = document.createElement("p"); // this creates a p element for which the title will be displayed
     title.innerHTML = `Book Title: ${book.title}`; // this sets the paragraph content to the current object's title property value
-    card.appendChild(title); // this appends that value to the card
     const author = document.createElement("p");
     author.innerHTML = `Author: ${book.author}`;
-    card.appendChild(author);
     const pages = document.createElement("p");
     pages.innerHTML = `Number of pages: ${book.pages}`;
-    card.appendChild(pages);
     const read = document.createElement("p");
     read.innerHTML = book.read;
+    card.appendChild(title); // this appends that value to the card
+    card.appendChild(author);
+    card.appendChild(pages);
     card.appendChild(read);
     card.classList.add("card"); // adding the card class to the card elements
   });
+
   // utilize this function to loop through library array and display the values as cards in html elements
 }
 

@@ -32,6 +32,7 @@
   border: 5px red solid;
 }
 
-#hide-form {
-  order: 5;
+#form-header-container {
+  display: flex;
+  justify-content: center;
 }
