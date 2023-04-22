@@ -19,6 +19,19 @@
   height: min(50%);
 }
 
+.card-container {
+  display: flex;
+  gap: 50px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+}
+
 .card {
-  border: 5px solid black;
+  flex: 1 4 min(50%);
+  border: 5px red solid;
+}
+
+#hide-form {
+  order: 5;
 }
