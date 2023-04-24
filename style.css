@@ -28,7 +28,7 @@
 }
 
 .card {
-  flex: 1 4 min(50%);
+  flex-basis: min(calc(20% - 20px));
   border: 5px red solid;
 }
 

@@ -32,6 +32,8 @@ function addBookToLibrary(book) {
 
 const cardContainer = document.querySelector(".card-container"); // creating variable for card container to append child elements to
 
+let cards = ""; // setting up this variable here so that it can be in the global scope and br accessible both in and out of the display book function
+
 function displayBooks() {
   const book = new Book(
     bookTitle.value,
@@ -62,6 +64,7 @@ function displayBooks() {
       card.appendChild(pages);
       card.appendChild(read);
       card.classList.add("card"); // adding the card class to the card elements
+      cards = cardContainer.querySelectorAll(".card"); // this ensures that all elements with cards are selected
 
       /* the section above is appending those elements to the card container element */
 
@@ -70,6 +73,18 @@ function displayBooks() {
       removeButton.innerText = "remove";
       removeButton.classList.add("remove-button");
       /* this section is creating and appending the remove button on the cards */
+
+      const readToggle = document.createElement("button");
+      card.appendChild(readToggle);
+      readToggle.innerText = "Read";
+
+      readToggle.addEventListener("click", () => {
+        if (read.innerHTML === `Read or no: Not Read`) {
+          read.innerHTML = `Read or no: Read`;
+        } else {
+          read.innerHTML = "Read or no: Not Read";
+        }
+      });
 
       removeButton.addEventListener("click", () => {
         library.splice(b.index, 1); // this removes the object element from the array
@@ -87,3 +102,12 @@ function displayBooks() {
 const submit = document.querySelector("#submit-btn");
 
 submit.addEventListener("click", displayBooks);
+
+function clearAll() {
+  cards.forEach((c) => {
+    c.remove();
+  });
+}
+const clearBtn = document.querySelector("#clear-btn");
+
+clearBtn.addEventListener("click", clearAll);
