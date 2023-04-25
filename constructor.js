@@ -32,7 +32,7 @@ function addBookToLibrary(book) {
 
 const cardContainer = document.querySelector(".card-container"); // creating variable for card container to append child elements to
 
-let cards = ""; // setting up this variable here so that it can be in the global scope and br accessible both in and out of the display book function
+let cards = ""; // setting up this variable here so that it can be in the global scope and be accessible both in and out of the display book function
 
 function displayBooks() {
   const book = new Book(
@@ -92,6 +92,7 @@ function displayBooks() {
       });
 
       b.added = true;
+      clearAllInput();
     } else {
       return;
     } // I wrapped this function in an if statement so that it would assess if the book object has been already added to the library or not.
@@ -103,11 +104,20 @@ const submit = document.querySelector("#submit-btn");
 
 submit.addEventListener("click", displayBooks);
 
+function clearAllInput() {
+  bookTitle.value = "";
+  bookAuthor.value = "";
+  bookPages.value = "";
+  bookRead.value = "";
+}
+
 function clearAll() {
   cards.forEach((c) => {
     c.remove();
   });
-}
+  clearAllInput();
+} // function to clear out any existing cards and text input fields
+
 const clearBtn = document.querySelector("#clear-btn");
 
 clearBtn.addEventListener("click", clearAll);
