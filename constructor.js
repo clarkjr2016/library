@@ -7,24 +7,24 @@ const bookRead = document.querySelector("#read");
 
 /* Assigning the form HTML elements to variables so that I can use them later */
 
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+    this.added = false; // this is adding a property to the prototype of object Book so that I can tell if it has been added to the library array
+  }
+
+  info() {
+    return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
+  } // this attaches the info method to the prototype of the book constructor and makes it accesible to all future instances of this object.
+
+  index() {
+    const indexOfObject = library.indexOf(this);
+    return indexOfObject;
+  } // establishing a method for all books to return its index within the library array
 } // this is my constructor function for the creation of books
-
-Book.prototype.info = function () {
-  return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
-}; // this attaches the info method to the prototype of the book constructor and makes it accesible to all future instances of this object.
-
-Book.prototype.index = function () {
-  const indexOfObject = library.indexOf(this);
-  return indexOfObject;
-}; // establishing a method for all books to return its index within the library array
-
-Book.prototype.added = false;
-// this is adding a property to the prototype of object Book so that I can tell if it has been added to the library array
 
 function addBookToLibrary(book) {
   library.push(book);
