@@ -1,3 +1,18 @@
+// select the form
+const form = document.querySelector("form");
+
+const inputs = form.querySelectorAll(
+  'input[type ="text"], input[type ="number"]'
+); // selects all the valuable inputs that need to be validated
+
+// add the required property to all of the inputs
+for (i = 0; i < inputs.length; i++) {
+  const input = inputs[i];
+  input.setAttribute("required", "");
+}
+
+// on the submit button add event listeners to all of the inputs and if they aren't valid stop the format form submitting and provide an error messaage
+
 const library = []; // empty array to store book objects in
 
 const bookTitle = document.querySelector("#title");
@@ -35,6 +50,14 @@ const cardContainer = document.querySelector(".card-container"); // creating var
 let cards = ""; // setting up this variable here so that it can be in the global scope and be accessible both in and out of the display book function
 
 function displayBooks() {
+  for (i = 0; i < inputs.length; i++) {
+    const input = inputs[i];
+
+    if (!input.checkValidity()) {
+      return;
+    }
+  } // this for loop looks through all of the inputs and if any of them aren't valid it just returns.
+
   const book = new Book(
     bookTitle.value,
     bookAuthor.value,
@@ -101,6 +124,15 @@ function displayBooks() {
 // utilize this function to loop through library array and display the values as cards in html elements
 
 const submit = document.querySelector("#submit-btn");
+
+form.addEventListener("submit", function (e) {
+  for (i = 0; i < inputs.length; i++) {
+    const input = inputs[i];
+    if (!input.checkValidity()) {
+      e.preventDefault();
+    }
+  }
+});
 
 submit.addEventListener("click", displayBooks);
 
